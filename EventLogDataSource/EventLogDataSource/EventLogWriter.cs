@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventLogDataSource
 {
-    class EventLogWriter
+    public class EventLogWriter
     {
         public int NumRows { get; set; }
 

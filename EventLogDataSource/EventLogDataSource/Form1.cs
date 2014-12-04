@@ -12,16 +12,18 @@ namespace EventLogDataSource
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private EventLogWriter logWriter;
+
+        public Form1(EventLogWriter logWriter)
         {
             InitializeComponent();
+            this.logWriter = logWriter;
         }
 
         private void ok_button_Click(object sender, EventArgs e)
         {
-            EventLogWriter writer = new EventLogWriter();
-            writer.NumRows = Decimal.ToInt32(numrows_numericUpDown.Value);
-            writer.Write();
+            logWriter.NumRows = Decimal.ToInt32(numrows_numericUpDown.Value);
+            logWriter.Write();
             Close();
         }
     }
