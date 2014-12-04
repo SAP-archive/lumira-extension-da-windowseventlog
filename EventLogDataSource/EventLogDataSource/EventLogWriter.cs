@@ -30,10 +30,24 @@ namespace EventLogDataSource
             }
         }
 
+        public void ParseParameters(string parameters)
+        {
+            string[] paramsArr = parameters.Split(';');
+            foreach(string param in paramsArr)
+            {
+                if (param.StartsWith("num_rows"))
+                {
+                    this.NumRows = Int32.Parse(param.Split('=')[1]);
+                    break;
+                }
+            }
+        }
+
         protected void WriteDSInfoBlock()
         {
             Console.WriteLine("beginDSInfo");
             Console.WriteLine("csv_first_row_has_column_names;true;true;");
+            Console.WriteLine("num_rows;" + NumRows + ";true;");
             Console.WriteLine("endDSInfo");
         }
 

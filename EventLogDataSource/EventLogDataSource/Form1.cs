@@ -18,6 +18,7 @@ namespace EventLogDataSource
         {
             InitializeComponent();
             this.logWriter = logWriter;
+            numrows_numericUpDown.Value = logWriter.NumRows;
         }
 
         private void ok_button_Click(object sender, EventArgs e)

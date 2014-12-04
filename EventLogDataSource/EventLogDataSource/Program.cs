@@ -91,7 +91,14 @@ namespace EventLogDataSource
         static EventLogWriter CreateEventLogWriter(Args args)
         {
             EventLogWriter logWriter = new EventLogWriter();
-            logWriter.NumRows = args.size;
+            if (args.size > 0)
+            {
+                logWriter.NumRows = args.size;
+            }
+            else if (args.parameters.Length > 0)
+            {
+                logWriter.ParseParameters(args.parameters);
+            }
             return logWriter;
         }
 
