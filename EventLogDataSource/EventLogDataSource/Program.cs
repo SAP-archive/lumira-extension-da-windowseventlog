@@ -26,33 +26,34 @@ namespace EventLogDataSource
             Args args = new Args();
 
             string[] argsList = Environment.GetCommandLineArgs();
-            
-            IEnumerator<string> iter = ((IEnumerable<string>) argsList).GetEnumerator();
-            while (iter.MoveNext())
+
+            using (IEnumerator<string> iter = ((IEnumerable<string>)argsList).GetEnumerator())
             {
-                string arg = iter.Current;
-                if (arg == "-mode")
+                while (iter.MoveNext())
                 {
-                    iter.MoveNext();
-                    args.mode = iter.Current;
-                }
-                else if (arg == "-size")
-                {
-                    iter.MoveNext();
-                    args.size = Int32.Parse(iter.Current);
-                }
-                else if (arg == "-locale")
-                {
-                    iter.MoveNext();
-                    args.locale = iter.Current;
-                }
-                else if (arg == "-params")
-                {
-                    iter.MoveNext();
-                    args.parameters = iter.Current;
+                    string arg = iter.Current;
+                    if (arg == "-mode")
+                    {
+                        iter.MoveNext();
+                        args.mode = iter.Current;
+                    }
+                    else if (arg == "-size")
+                    {
+                        iter.MoveNext();
+                        args.size = Int32.Parse(iter.Current);
+                    }
+                    else if (arg == "-locale")
+                    {
+                        iter.MoveNext();
+                        args.locale = iter.Current;
+                    }
+                    else if (arg == "-params")
+                    {
+                        iter.MoveNext();
+                        args.parameters = iter.Current;
+                    }
                 }
             }
-
             return args;
         }
     };
