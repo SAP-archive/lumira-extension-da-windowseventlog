@@ -17,11 +17,7 @@ namespace EventLogDataSource
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Console.WriteLine("beginDSInfo");
-            Console.WriteLine("endDSInfo");
-            Console.WriteLine("beginData");
-            Console.WriteLine("hello, world");
-            Console.WriteLine("endData");
+            new EventLogWriter().Write();
         }
     }
 }
