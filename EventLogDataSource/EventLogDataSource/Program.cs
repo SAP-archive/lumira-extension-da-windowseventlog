@@ -16,8 +16,8 @@ namespace EventLogDataSource
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            new EventLogWriter().Write();
+            Application.Run(new Form1());
+            //new EventLogWriter().Write();
         }
     }
 }

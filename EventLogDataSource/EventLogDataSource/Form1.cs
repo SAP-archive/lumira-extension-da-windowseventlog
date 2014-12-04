@@ -16,5 +16,13 @@ namespace EventLogDataSource
         {
             InitializeComponent();
         }
+
+        private void ok_button_Click(object sender, EventArgs e)
+        {
+            EventLogWriter writer = new EventLogWriter();
+            writer.NumRows = Decimal.ToInt32(numrows_numericUpDown.Value);
+            writer.Write();
+            Close();
+        }
     }
 }

@@ -9,6 +9,13 @@ namespace EventLogDataSource
 {
     class EventLogWriter
     {
+        public int NumRows { get; set; }
+
+        public EventLogWriter()
+        {
+            NumRows = 50;
+        }
+
         public void Write()
         {
             try
@@ -36,19 +43,16 @@ namespace EventLogDataSource
             Console.WriteLine("Category,Source,Time Generated");
 
             EventLog eventLog = new EventLog("Application");
-            int i = 0;
             IList<string> columns = new List<string>();
 
-            foreach (System.Diagnostics.EventLogEntry entry in eventLog.Entries)
+            for (int i = 0; i < eventLog.Entries.Count && i < NumRows; i++ )
             {
-                if (++i % 1000 == 0) // limit the rows returned for demo purposes
-                {
-                    columns.Clear();
-                    columns.Add(EscapeSpecialChars(entry.EntryType));
-                    columns.Add(EscapeSpecialChars(entry.Source));
-                    columns.Add(EscapeSpecialChars(entry.TimeGenerated));
-                    Console.WriteLine(string.Join(",", columns));
-                }
+                EventLogEntry entry = eventLog.Entries[i];
+                columns.Clear();
+                columns.Add(EscapeSpecialChars(entry.EntryType));
+                columns.Add(EscapeSpecialChars(entry.Source));
+                columns.Add(EscapeSpecialChars(entry.TimeGenerated));
+                Console.WriteLine(string.Join(",", columns));
             }
 
             Console.WriteLine("endData");
@@ -66,6 +70,6 @@ namespace EventLogDataSource
             // Quotation mark characters have to be doubled up (" -> "")
             field = field.Replace("\"", "\"\"");
             return "\"" + field + "\"";
-        }
+        }        
     }
 }
