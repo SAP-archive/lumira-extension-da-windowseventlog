@@ -98,6 +98,13 @@ namespace EventLogDataSource
             else if (args.parameters.Length > 0)
             {
                 logWriter.ParseParameters(args.parameters);
+                if (args.mode == "edit")
+                {
+                    // edit mode is equivalent to preview mode, but Lumira doesn't specify the 
+                    // number of rows to return. In preview mode, Lumira asks for 300 rows, so
+                    // that's how many we'll return for edit mode.
+                    logWriter.NumRows = 300; 
+                }
             }
             return logWriter;
         }

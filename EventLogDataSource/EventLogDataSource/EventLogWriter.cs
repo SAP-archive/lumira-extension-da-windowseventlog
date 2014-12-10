@@ -10,10 +10,12 @@ namespace EventLogDataSource
     public class EventLogWriter
     {
         public int NumRows { get; set; }
+        public int NumRowsParameter { get; set; }
 
         public EventLogWriter()
         {
             NumRows = 50;
+            NumRowsParameter = NumRows;
         }
 
         public void Write()
@@ -38,6 +40,7 @@ namespace EventLogDataSource
                 if (param.StartsWith("num_rows"))
                 {
                     this.NumRows = Int32.Parse(param.Split('=')[1]);
+                    this.NumRowsParameter = this.NumRows;
                     break;
                 }
             }
@@ -47,7 +50,7 @@ namespace EventLogDataSource
         {
             Console.WriteLine("beginDSInfo");
             Console.WriteLine("csv_first_row_has_column_names;true;true;");
-            Console.WriteLine("num_rows;" + NumRows + ";true;");
+            Console.WriteLine("num_rows;" + NumRowsParameter + ";true;");
             Console.WriteLine("endDSInfo");
         }
 

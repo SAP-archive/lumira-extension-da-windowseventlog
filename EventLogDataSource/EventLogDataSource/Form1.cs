@@ -24,6 +24,7 @@ namespace EventLogDataSource
         private void ok_button_Click(object sender, EventArgs e)
         {
             logWriter.NumRows = Decimal.ToInt32(numrows_numericUpDown.Value);
+            logWriter.NumRowsParameter = logWriter.NumRows;
             logWriter.Write();
             Close();
         }
